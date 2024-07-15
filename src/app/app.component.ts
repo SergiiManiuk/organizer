@@ -114,7 +114,7 @@ export class AppComponent {
   readonly labelPosition = model<'before' | 'after'>('after');
   readonly disabled = model(false);
 
-  title = 'my-app';
+  title = 'organizer';
   readonly campaignOne = new FormGroup({
     start: new FormControl(new Date(year, month, 13)),
     end: new FormControl(new Date(year, month, 16)),
