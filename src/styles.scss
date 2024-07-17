@@ -1,13 +1,191 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'sass:map';
+@use "@angular/material" as mat;
+//  @use "./styles/themes/all" as themes;
+// @use "../m3-theme";
+@use "./assets/styles/theme" as theme;
+@include mat.core();
+// @include mat.core();
+// @import '@angular/material/prebuilt-themes/azure-blue.css';
+//  @use "./assets/theme" as theme;
+@import './vendors/bootstrap';
 
-html,
-body {
-    height: 100%;
+
+
+
+.main {
+    margin: 0 auto;
 }
+
+.avatar {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.container {
+    max-width: 600px;
+}
+
+@include theme.create-light-theme();
+
+.dark-theme {
+    @include theme.create-dark-theme();
+}
+
+
+:root {
+    // --mdc-fab-small-container-shape: 50px !important;
+}
+
+.avatar-buttons {
+    .mat-mdc-mini-fab {
+        // background: #66A71C;
+        width: 48px !important;
+        height: 48px !important;
+        font-size: 24px !important;
+
+        .mat-icon {
+            width: 24px;
+            height: 24px;
+            font-size: 24px !important;
+        }
+    }
+}
+
+.social-buttons {
+    .mat-mdc-mini-fab {
+        background: #EBECFE;
+        border-radius: 8px;
+        width: 44px !important;
+        height: 44px !important;
+        font-size: 24px !important;
+
+        .mat-icon {
+            width: 24px;
+            height: 24px;
+            font-size: 24px !important;
+        }
+    }
+}
+
+
+
+//  $angular-material-3-light-theme: mat.define-theme((color: (theme-type: light,
+//                  primary: mat.$blue-palette ),
+//              density: (scale: 0,
+//              ),
+//          ));
+
+//  $angular-material-3-dark-theme: mat.define-theme((color: (theme-type: dark,
+//                  primary: mat.$rose-palette ),
+//              density: (scale: 0,
+//              ),
+//          ));
+
+
+
+
+//  :root {
+
+//      @include mat.core-theme($angular-material-3-light-theme);
+
+//      @include mat.all-component-themes($angular-material-3-light-theme);
+
+//      // Components themes
+//      // @include layout-component.theme($theme);
+
+//      @include mat.color-variants-backwards-compatibility($angular-material-3-light-theme);
+
+//      .avatar-buttons {
+//          .mat-mdc-mini-fab {
+//              background: #66A71C;
+//          }
+
+//      }
+
+//      @media (prefers-color-scheme: dark) {
+//          @include mat.all-component-colors($angular-material-3-dark-theme);
+
+//          // @include layout-component.theme($dark-theme);
+
+//          .social-buttons {
+//              .mat-mdc-mini-fab {
+//                  background: #EBECFE;
+//              }
+//          }
+
+//          @include mat.color-variants-backwards-compatibility($angular-material-3-dark-theme);
+//      }
+//  }
 
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-@import '@angular/material/prebuilt-themes/purple-green.css';
+//  $light-theme: mat.m2-define-light-theme((color: (primary: $my-secondary,
+//                  accent: $my-primary,
+//                  success: $my-secondary,
+//                  warn: mat.m2-define-palette(mat.$m2-orange-palette),
+
+//              )));
+
+
+
+// $my-primary: mat.m2-define-palette($md-primary, 500);
+// $my-secondary: mat.m2-define-palette($md-secondary, 500);
+// // primary: $mat.$m2-deep-purple-palette,
+
+// $light-theme: mat.m2-define-light-theme((color: (primary: $my-secondary,
+//         accent: $my-primary,
+//         success: $my-secondary,
+//         warn: mat.m2-define-palette(mat.$m2-orange-palette),
+
+//       )));
+
+$md-secondary: (
+    50 : #049e63,
+    100 : #049e63,
+    200 : #049e63,
+    300 : #049e63,
+    400 : #049e63,
+    500 : #049e63,
+    600 : #049e63,
+    700 : #049e63,
+    800 : #049e63,
+    900 : #049e63,
+    A100 : #ffffff,
+    A200 : #f9f2ff,
+    A400 : #e0bfff,
+    A700 : #d4a6ff,
+    contrast: (50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+// $my-primary: mat.m2-define-palette($md-primary, 500);
+$my-secondary: mat.m2-define-palette($md-secondary, 500);
+
+$my-theme: mat.define-theme((color: (theme-type: light,
+                primary: mat.$green-palette ),
+            typography: (brand-family: 'Comic Sans',
+                bold-weight: 900,
+            ),
+        ));
+
+html {
+    // @include mat.all-component-themes($my-theme);
+}

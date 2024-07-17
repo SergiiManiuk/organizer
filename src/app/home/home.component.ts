@@ -1,9 +1,12 @@
-import { Component, inject } from '@angular/core';
+import { Component, HostBinding, inject } from '@angular/core';
+import { MatToolbar } from "@angular/material/toolbar";
+import { MatButton, MatIconButton } from "@angular/material/button";
+import { MatIcon } from "@angular/material/icon";
 import { RouterOutlet } from '@angular/router';
 import { ChangeDetectionStrategy, model } from '@angular/core';
-import { ThemeManager } from './theme-manager.service';
+import { ThemeManager } from '../theme-manager.service';
+
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from "./home/home.component";
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
@@ -25,7 +28,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 
-import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 import { MatGridListModule } from '@angular/material/grid-list';
 
@@ -59,15 +62,41 @@ import { MatTreeModule } from '@angular/material/tree';
 
 
 import { MatNativeDateModule } from '@angular/material/core';
-
-const today = new Date();
-const month = today.getMonth();
-const year = today.getFullYear();
+import {
+  MatCard,
+  MatCardActions,
+  MatCardContent,
+  MatCardHeader,
+  MatCardImage, MatCardSubtitle,
+  MatCardTitle
+} from "@angular/material/card";
+import { MatFormField, MatHint, MatLabel } from "@angular/material/form-field";
+import { MatInput } from "@angular/material/input";
+import { MatSlideToggle } from "@angular/material/slide-toggle";
+import { FormsModule } from "@angular/forms";
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, HomeComponent, MatSlideToggleModule, MatBadgeModule, MatAutocompleteModule,
+  imports: [
+    MatToolbar,
+    MatIconButton,
+    MatIcon,
+    MatCard,
+    MatCardHeader,
+    MatCardTitle,
+    MatCardContent,
+    MatCardImage,
+    MatCardActions,
+    MatButton,
+    MatFormField,
+    MatInput,
+    MatHint,
+    MatLabel,
+    MatCardSubtitle,
+    MatSlideToggle,
+    FormsModule,
+    CommonModule, RouterOutlet, HomeComponent, MatSlideToggleModule, MatBadgeModule, MatAutocompleteModule,
     MatBadgeModule,
     MatBottomSheetModule,
     MatButtonModule,
@@ -105,19 +134,18 @@ const year = today.getFullYear();
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-    MatNativeDateModule],
+    MatNativeDateModule
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [MatDatepickerModule],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss'
 })
-export class AppComponent {
-  readonly checked = model(false);
-  readonly indeterminate = model(false);
-  readonly labelPosition = model<'before' | 'after'>('after');
-  readonly disabled = model(false);
+export class HomeComponent {
+  @HostBinding('class')
+  currentTheme: 'light-theme' | 'dark-theme' = 'light-theme';
 
-  title = 'organizer';
+  isDarkMode: boolean = false;
 
   themeManager = inject(ThemeManager);
   isDark$ = this.themeManager.isDark$;
@@ -126,12 +154,4 @@ export class AppComponent {
     this.themeManager.changeTheme(theme);
   }
 
-  readonly campaignOne = new FormGroup({
-    start: new FormControl(new Date(year, month, 13)),
-    end: new FormControl(new Date(year, month, 16)),
-  });
-  readonly campaignTwo = new FormGroup({
-    start: new FormControl(new Date(year, month, 15)),
-    end: new FormControl(new Date(year, month, 19)),
-  });
 }
